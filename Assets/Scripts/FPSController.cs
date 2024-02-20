@@ -8,7 +8,7 @@ public class FPSController : MonoBehaviour
     public Camera playerCamera;
     [SerializeField] private float speed = 6f;
 
-    private float lookSpeed = 2f;
+    [SerializeField] private float lookSpeed = 2f;
     private float lookLimit = 45f;
 
     Vector3 moveDirection = Vector3.zero;
@@ -27,6 +27,7 @@ public class FPSController : MonoBehaviour
 
     private void Update()
     {
+
         float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;

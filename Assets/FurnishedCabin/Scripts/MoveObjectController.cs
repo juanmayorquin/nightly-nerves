@@ -64,13 +64,14 @@ public class MoveObjectController : MonoBehaviour
 
 
 	void Update()
-	{		
+	{
 		if (playerEntered)
 		{
 
 			//center point of viewport in World space.
 			Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f,0.5f,0f));
 			RaycastHit hit;
+
 
 			//if raycast hits a collider on the rayLayerMask
 			if (Physics.Raycast(rayOrigin,fpsCam.transform.forward, out hit,reachRange,rayLayerMask))
