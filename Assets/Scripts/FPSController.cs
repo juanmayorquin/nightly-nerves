@@ -9,14 +9,16 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float speed = 6f;
 
     [SerializeField] private float lookSpeed = 2f;
-    private float lookLimit = 45f;
+    private float lookLimit = 60f; 
+    private float gravity = 8f;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0f;
 
     CharacterController characterController;
 
-    private bool canMove = true;
+    public bool canMove = true;
+    public bool canRotate = true;
 
     private void Start()
     {
@@ -27,16 +29,20 @@ public class FPSController : MonoBehaviour
 
     private void Update()
     {
-
         float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
 
         moveDirection = (transform.forward * curSpeedX) + (transform.right * curSpeedY);
 
+        if(!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity;
+        }
+
         characterController.Move(moveDirection * Time.deltaTime);
 
-        if(canMove)
+        if(canRotate)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookLimit, lookLimit);

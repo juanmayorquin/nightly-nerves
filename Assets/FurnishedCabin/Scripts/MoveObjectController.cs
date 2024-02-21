@@ -42,28 +42,26 @@ public class MoveObjectController : MonoBehaviour
 		setupGui();
 
 	}
-		
-	void OnTriggerEnter(Collider other)
-	{		
-		if (other.gameObject == player)		//player has collided with trigger
-		{			
-			playerEntered = true;
-		}
-	}
 
-	void OnTriggerExit(Collider other)
-	{		
-		if (other.gameObject == player)		//player has exited trigger
-		{			
-			playerEntered = false;
-			//hide interact message as player may not have been looking at object when they left
-			showInteractMsg = false;		
-		}
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)     //player has collided with trigger
+        {
+            playerEntered = true;
+        }
+    }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)     //player has exited trigger
+        {
+            playerEntered = false;
+            //hide interact message as player may not have been looking at object when they left
+            showInteractMsg = false;
+        }
+    }
 
-
-	void Update()
+    void Update()
 	{
 		if (playerEntered)
 		{
@@ -154,7 +152,7 @@ public class MoveObjectController : MonoBehaviour
 		guiStyle.fontSize = 16;
 		guiStyle.fontStyle = FontStyle.Bold;
 		guiStyle.normal.textColor = Color.white;
-		msg = "Press E/Fire1 to Open";
+		msg = "Presiona E/Click para abrir";
 	}
 
 	private string getGuiMsg(bool isOpen)
@@ -162,10 +160,10 @@ public class MoveObjectController : MonoBehaviour
 		string rtnVal;
 		if (isOpen)
 		{
-			rtnVal = "Press E/Fire1 to Close";
+			rtnVal = "Presiona E/Click para cerrar";
 		}else
 		{
-			rtnVal = "Press E/Fire1 to Open";
+			rtnVal = "Presiona E/Click para abrir";
 		}
 
 		return rtnVal;
