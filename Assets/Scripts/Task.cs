@@ -5,6 +5,7 @@ using UnityEngine;
 public class Task : MonoBehaviour
 {
     public bool isDone = false;
+    public int id;
 
     private void Start()
     {
