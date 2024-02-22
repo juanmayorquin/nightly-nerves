@@ -89,8 +89,9 @@ public class MoveObjectController : MonoBehaviour
 					bool isOpen = anim.GetBool(animBoolNameNum);	//need current state for message.
 					msg = getGuiMsg(isOpen);
 
-					if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
+					if ((Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1")) && isOpen)
 					{
+						moveableObject.GetComponent<Task>().setDone();
 						anim.enabled = true;
 						anim.SetBool(animBoolNameNum,!isOpen);
 						msg = getGuiMsg(!isOpen);
@@ -163,7 +164,7 @@ public class MoveObjectController : MonoBehaviour
 			rtnVal = "Presiona E/Click para cerrar";
 		}else
 		{
-			rtnVal = "Presiona E/Click para abrir";
+			rtnVal = "";
 		}
 
 		return rtnVal;

@@ -65,7 +65,8 @@ public class Knife : MonoBehaviour
 
                 if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
                 {
-                    GameObject.Destroy(gameObject);
+                    GetComponent<Task>().setDone();
+                    foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) { renderer.enabled= false; }
                 }
 
 

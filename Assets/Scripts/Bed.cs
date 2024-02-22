@@ -63,14 +63,14 @@ public class Bed : MonoBehaviour
                     showInteractMsg = true;
                     msg = "Presiona E/Click para acostarte";
 
-                    if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
+                    if ((Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1")) && showInteractMsg)
                     {
                         foreach (MeshCollider coll in GetComponentsInChildren<MeshCollider>()) { coll.enabled = false; }
                         player.GetComponent<FPSController>().canMove = false;
                         player.transform.rotation = transform.rotation;
-                        player.transform.position = transform.position + 10 * Vector3.up;
+                        player.GetComponent<CharacterController>().Move(transform.position - player.transform.position);
 
-                        
+                        showInteractMsg= false;
                     }
 
                 
