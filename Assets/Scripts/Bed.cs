@@ -8,6 +8,7 @@ public class Bed : MonoBehaviour
 
     private Camera fpsCam;
     private GameObject player;
+    private GameManager gameManager;
 
     private bool playerEntered;
     private bool showInteractMsg;
@@ -19,6 +20,7 @@ public class Bed : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        gameManager = FindObjectOfType<GameManager>();
 
         fpsCam = Camera.main;
         if (fpsCam == null) 
@@ -69,8 +71,10 @@ public class Bed : MonoBehaviour
                         player.GetComponent<FPSController>().canMove = false;
                         player.transform.rotation = transform.rotation;
                         player.GetComponent<CharacterController>().Move(transform.position - player.transform.position);
-
                         showInteractMsg= false;
+                        GameObject.FindObjectOfType<AudioManager>().Play("grab");
+
+                        gameManager.checkIfFinished();
                     }
 
                 

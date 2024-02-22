@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9d9d43eea51c541a093ae46d34d092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachRange: 1.8
+  reachRange: 3
 --- !u!1 &1654692837483166
 GameObject:
   m_ObjectHideFlags: 0

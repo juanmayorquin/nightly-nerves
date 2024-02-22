@@ -91,10 +91,12 @@ public class MoveObjectController : MonoBehaviour
 
 					if ((Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1")) && isOpen)
 					{
-						moveableObject.GetComponent<Task>().setDone();
+						moveableObject.GetComponent<Task>().isDone = true;
 						anim.enabled = true;
 						anim.SetBool(animBoolNameNum,!isOpen);
 						msg = getGuiMsg(!isOpen);
+
+						GameObject.FindObjectOfType<AudioManager>().Play("door");
 					}
 
 				}

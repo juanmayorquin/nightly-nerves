@@ -6,6 +6,7 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     public Camera playerCamera;
+    private AudioManager audioManager;
     [SerializeField] private float speed = 6f;
 
     [SerializeField] private float lookSpeed = 2f;
@@ -23,6 +24,7 @@ public class FPSController : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        audioManager = FindObjectOfType<AudioManager>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -49,5 +51,16 @@ public class FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        if (curSpeedX != 0 || curSpeedY != 0)
+        {
+            audioManager.Play("walk");
+        }
+
+        if (curSpeedX == 0 && curSpeedY == 0)
+        {
+            audioManager.Stop("walk");
+        }
+
     }
 }

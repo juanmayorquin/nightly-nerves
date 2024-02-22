@@ -63,10 +63,12 @@ public class Knife : MonoBehaviour
                 showInteractMsg = true;
                 msg = "Presiona E/Click para esconder los cuchillos";
 
-                if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
+                if ((Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1")) && showInteractMsg)
                 {
-                    GetComponent<Task>().setDone();
-                    foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) { renderer.enabled= false; }
+                    GetComponent<Task>().isDone = true;
+                    foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) { renderer.enabled = false; }
+                    GameObject.FindObjectOfType<AudioManager>().Play("grab");
+                    showInteractMsg = false;
                 }
 
 
